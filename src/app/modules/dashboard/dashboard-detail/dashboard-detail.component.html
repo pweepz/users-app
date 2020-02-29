@@ -1,0 +1,17 @@
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">face</mat-icon>
+      </div>
+      <mat-card-title>{{dashboardItem?.name}}</mat-card-title>
+      <mat-card-subtitle>User Info</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Name:</strong> {{dashboardItem?.name}}</p>
+      <p><strong>Address:</strong> {{dashboardItem?.address?.city }}, {{ dashboardItem?.address?.street }}</p>
+      <p><strong>Company:</strong> {{dashboardItem?.company?.name}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
