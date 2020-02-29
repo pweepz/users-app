@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { DashboardService } from '../store/dashboard.service';
-import {select, Store} from '@ngrx/store';
-import {DashboardState} from '../store/dashboard.reducer';
-import {getDashboardItem, getDashboardItems} from '../store/dashboard.actions';
-import {selectDashboardItems} from '../store/dashboard.selectors';
-import {Observable} from 'rxjs';
-import {DashboardItem} from '../store/dashboard-item';
+import { DashboardState } from '../store/dashboard.reducer';
+import { getDashboardItems } from '../store/dashboard.actions';
+import { selectDashboardItems } from '../store/dashboard.selectors';
+import { DashboardItem } from '../store/dashboard-item';
 
 @Component({
   selector: 'app-dashboard-list',

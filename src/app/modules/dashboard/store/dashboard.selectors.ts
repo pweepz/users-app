@@ -16,7 +16,5 @@ export const selectJobsLoadingState = createSelector(
 
 export const selectDashboardItem = createSelector(
   selectDashboard,
-  (state: fromDashboard.DashboardState) => {
-    console.log('state: ', state);
-    return state.item},
+  (state: fromDashboard.DashboardState) => state.item,
 );

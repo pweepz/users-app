@@ -1,12 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {DashboardItem} from '../store/dashboard-item';
-import {select, Store} from '@ngrx/store';
-import {DashboardState} from '../store/dashboard.reducer';
-import {getDashboardItem, getDashboardItems} from '../store/dashboard.actions';
-import {selectDashboardItem} from '../store/dashboard.selectors';
-import {ActivatedRoute, Params} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+import { DashboardItem } from '../store/dashboard-item';
+import { DashboardState } from '../store/dashboard.reducer';
+import { getDashboardItem } from '../store/dashboard.actions';
+import { selectDashboardItem } from '../store/dashboard.selectors';
 
 @Component({
   selector: 'app-dashboard-detail',

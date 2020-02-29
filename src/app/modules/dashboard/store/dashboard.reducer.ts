@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import * as fromDashboard from './dashboard.actions';
-import {DashboardItem} from './dashboard-item';
+import { DashboardItem } from './dashboard-item';
 
 export const dashboardFeatureKey = 'dashboard';
 
@@ -31,18 +31,11 @@ export const dashboardReducer = createReducer(
     items,
     isLoading: false,
   })),
-  /*on(fromDashboard.setDashboardItem, (state: DashboardState, { item }) => ({
+  on(fromDashboard.setDashboardItem, (state: DashboardState, { item }) => ({
     ...state,
     item,
     isLoading: false,
-  })),*/
-  on(fromDashboard.setDashboardItem, (state: DashboardState, { item }) => {
-    console.log('item: ', item);
-    return {
-    ...state,
-    item,
-    isLoading: false,
-  }}),
+    })),
   on(fromDashboard.requestFailed, (state: DashboardState) => ({
     ...state,
     isLoading: false,

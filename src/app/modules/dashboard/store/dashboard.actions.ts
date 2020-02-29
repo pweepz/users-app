@@ -1,5 +1,6 @@
-import {createAction, props} from '@ngrx/store';
-import {DashboardItem} from './dashboard-item';
+import { createAction, props } from '@ngrx/store';
+
+import { DashboardItem } from './dashboard-item';
 
 export const getDashboardItems = createAction(
   '[Dashboard] Get Dashboard Items'
