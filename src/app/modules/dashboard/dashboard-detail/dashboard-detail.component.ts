@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 
 import { DashboardItem } from '../store/dashboard-item';
 import { DashboardState } from '../store/dashboard.reducer';
-import { getDashboardItem } from '../store/dashboard.actions';
-import { selectDashboardItem } from '../store/dashboard.selectors';
+import { getDashboardItem, setDashboardItem } from '../store/dashboard.actions';
+import { selectDashboardItem, selectDashboardItems } from '../store/dashboard.selectors';
 
 @Component({
   selector: 'app-dashboard-detail',
@@ -19,6 +19,7 @@ export class DashboardDetailComponent implements OnInit, OnDestroy {
   dashboardItem: DashboardItem;
 
   private destroy$: Subject<any> = new Subject();
+  private userId: number;
 
   constructor(private store: Store<DashboardState>,
               private activatedRoute: ActivatedRoute) { }
@@ -26,13 +27,23 @@ export class DashboardDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       if ('id' in params) {
-        this.store.dispatch(getDashboardItem({ id: +params.id }));
+        this.userId = +params.id;
       }
     });
     this.store.pipe(
       select(selectDashboardItem),
       takeUntil(this.destroy$)
     ).subscribe((dashboardItem: DashboardItem) => this.dashboardItem = dashboardItem);
+    this.store.pipe(
+      select(selectDashboardItems),
+      takeUntil(this.destroy$)
+    ).subscribe((dashboardItems: DashboardItem[]) => {
+      dashboardItems.length
+        ? this.store.dispatch(setDashboardItem({
+          item: dashboardItems.find((item: DashboardItem) => item.id === this.userId),
+        }))
+        : this.store.dispatch(getDashboardItem({ id: this.userId }));
+    });
   }
 
   ngOnDestroy(): void {
